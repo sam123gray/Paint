@@ -1,0 +1,74 @@
+﻿@model Paint.Models.PaintViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!--Custom Styles-->
+<style>
+    .main-area {
+        margin: 7% auto;
+        width: 600px;
+    }
+</style>
+
+<div class="main-area">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3>
+                Paint Calculator
+            </h3>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "form", model = Model }))
+            {
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Length</label> <label id="lblLength">(Feet)</label><br />
+                            @Html.ValidationMessageFor(x => x.Length, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.Length, new { @class = "form-control" })
+
+                        </div>
+                        <div class="col-md-4">
+                            <label>Width</label> <label id="lblWidth">(Feet)</label><br />
+                            @Html.ValidationMessageFor(x => x.Width, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.Width, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4">
+                            <label>Height</label> <label id="lblHeight">(Feet)</label><br />
+                            @Html.ValidationMessageFor(x => x.Height, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Amount of Doors</label><br />
+                            @Html.ValidationMessageFor(x => x.Doors, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.Doors, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            <label>Amount of Windows</label><br />
+                            @Html.ValidationMessageFor(x => x.Windows, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.Windows, new { @class = "form-control" })<br />
+                            <button class="btn btn-primary" style="float:right;" type="submit">Calculate</button>
+                        </div>
+
+                    </div>
+
+                    <br /><hr /><br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><label>Area Total (Sq Ft)</label></strong> @Html.DisplayFor(x => x.AreaTotal, new { @class = "form-control" })<br />
+                            <strong><label>Volume Total (Cb Ft)</label></strong> @Html.DisplayFor(x => x.VolumeTotal, new { @class = "form-control" })<br />
+                            <strong><label>Paint Needed (Gallons)</label></strong> @Html.DisplayFor(x => x.PaintNeeded, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
